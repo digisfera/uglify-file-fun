@@ -1,0 +1,28 @@
+{
+  "name": "uglify-file-fun",
+  "version": "0.0.0",
+  "description": "UglifyJS2 wrapper to work with files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/digisfera/uglify-file-fun.git"
+  },
+  "keywords": [
+    "uglify",
+    "build",
+    "file-fun"
+  ],
+  "author": "Manuel Cabral (m.cabral@digisfera.pt)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digisfera/uglify-file-fun/issues"
+  },
+  "homepage": "https://github.com/digisfera/uglify-file-fun",
+  "dependencies": {
+    "uglify-js": "~2.4.11",
+    "file-fun": "0.0.3"
+  }
+}
