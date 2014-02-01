@@ -1,0 +1,1 @@
+(function thatFun() { console.log("that"); })()
