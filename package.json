@@ -1,6 +1,6 @@
 {
   "name": "uglify-files",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Uglify files with UglifyJS2",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "dependencies": {
     "uglify-js": "~2.4.11",
     "lodash": "~2.4.1",
-    "file-rw": "0.0.1"
+    "file-rw": "*"
   },
   "devDependencies": {
     "chai": "~1.8.1",
