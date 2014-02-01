@@ -45,23 +45,25 @@ module.exports = function(inputFiles, outputFile, options, callback) {
   fileFun.readFilesUtf8(inputFiles, function(err, filesData) {
 
     var data = null;
-    var sourceMapFile = options.sourceMapFile || outputFile + '.map';
+    var sourceMapFile = null;
 
     if(filesData.length > 0) {
       //More than one file, we can't handle sourcemaps in this case yet
       data = filesData.join(';');
-      options.sourceMap = false;
+      options.sourceMapFile = false;
     }
     else {
       data = filesData[0];
       options.inputFileForSourceMap = inputFiles[0];
       options.outputFileForSourceMap = outputFile;
+
+      sourceMapFile = options.sourceMapFile || outputFile + '.map';
       options.sourceMapFile = sourceMapFile;
     }
 
     result = uglifyData(data, options);
 
-    if(result.map) {
+    if(result.map && sourceMapFile) {
       fileFun.mkWriteFiles([[ outputFile, result.code ], [sourceMapFile, result.map]], callback);
     }
     else {
