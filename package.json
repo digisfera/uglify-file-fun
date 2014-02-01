@@ -1,33 +1,33 @@
 {
-  "name": "uglify-file-fun",
+  "name": "uglify-files",
   "version": "0.1.0",
-  "description": "UglifyJS2 wrapper to work with files",
+  "description": "Uglify files with UglifyJS2",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/digisfera/uglify-file-fun.git"
+    "url": "http://github.com/digisfera/uglify-files.git"
   },
   "keywords": [
     "uglify",
-    "build",
-    "file-fun"
+    "build"
   ],
   "author": "Manuel Cabral (m.cabral@digisfera.pt)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/digisfera/uglify-file-fun/issues"
+    "url": "https://github.com/digisfera/uglify-files/issues"
   },
-  "homepage": "https://github.com/digisfera/uglify-file-fun",
+  "homepage": "https://github.com/digisfera/uglify-files",
   "dependencies": {
     "uglify-js": "~2.4.11",
-    "file-fun": "0.0.3",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "file-rw": "0.0.1"
   },
   "devDependencies": {
     "chai": "~1.8.1",
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "rimraf": "~2.2.6"
   }
 }

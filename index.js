@@ -1,4 +1,4 @@
-var fileFun = require('file-fun'),
+var filerw = require('file-rw'),
     _ = require('lodash'),
     path = require('path'),
     UglifyJS = require("uglify-js");
@@ -40,34 +40,59 @@ function uglifyData(data, options) {
 
 
 module.exports = function(inputFiles, outputFile, options, callback) {
+  if(!callback && _.isFunction(options)) {
+    callback = options;
+    options = null;
+  }
+
+  options = options || {};
+  callback = callback || function() {};
+
   if(_.isString(inputFiles)) { inputFiles = [ inputFiles ]; }
 
-  fileFun.readFilesUtf8(inputFiles, function(err, filesData) {
+  filerw.readFilesUtf8(inputFiles, function(err, filesData) {
 
     var data = null;
     var sourceMapFile = null;
 
-    if(filesData.length > 0) {
+    if(filesData.length > 1) {
       //More than one file, we can't handle sourcemaps in this case yet
       data = filesData.join(';');
       options.sourceMapFile = false;
     }
     else {
       data = filesData[0];
-      options.inputFileForSourceMap = inputFiles[0];
-      options.outputFileForSourceMap = outputFile;
+      if(options.sourceMapFile) {
+        options.inputFileForSourceMap = inputFiles[0];
+        options.outputFileForSourceMap = outputFile;
 
-      sourceMapFile = options.sourceMapFile || outputFile + '.map';
-      options.sourceMapFile = sourceMapFile;
+        sourceMapFile = options.sourceMapFile || outputFile + '.map';
+        options.sourceMapFile = sourceMapFile;
+      }
     }
 
     result = uglifyData(data, options);
 
+
     if(result.map && sourceMapFile) {
-      fileFun.mkWriteFiles([[ outputFile, result.code ], [sourceMapFile, result.map]], callback);
+      filerw.mkWriteFiles([[ outputFile, result.code ], [sourceMapFile, result.map]], function(err, success) {
+        if(err) { callback(err); }
+        else { callback(null, {
+          outputFile: outputFile,
+          sourceMapFile: sourceMapFile,
+          outputData: result.code,
+          sourceMapData: result.map
+        });}
+      });
     }
     else {
-      fileFun.mkWriteFile(outputFile, result.code, callback);
+      filerw.mkWriteFile(outputFile, result.code, function(err, success){
+        if(err) { callback(err); }
+        else { callback(null, {
+          outputFile: outputFile,
+          outputData: result.code
+        });}
+      });
     }
 
   });
