@@ -1,6 +1,6 @@
 {
   "name": "uglify-file-fun",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "UglifyJS2 wrapper to work with files",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   "homepage": "https://github.com/digisfera/uglify-file-fun",
   "dependencies": {
     "uglify-js": "~2.4.11",
-    "file-fun": "0.0.3"
+    "file-fun": "0.0.3",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "chai": "~1.8.1",
