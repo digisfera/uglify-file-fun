@@ -71,7 +71,7 @@ module.exports = function(inputFiles, outputFile, options, callback) {
       }
     }
 
-    result = uglifyData(data, options);
+    var result = uglifyData(data, options);
 
 
     if(result.map && sourceMapFile) {
